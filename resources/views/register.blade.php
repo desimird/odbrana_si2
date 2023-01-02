@@ -30,37 +30,78 @@
         </header>
         <section class="sign-in">
             <h1>Popunite podatke za prijavljivanje:</h1>
-            <div class="form">
-                <div class="form-item">
+        <form method="POST" action='/users'>
+            @csrf
+            <div>
+                <div class="mb-6">
                     <label for="name"><b>Ime</b></label>
-                    <input type="text" name="uname" required>
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{old('name')}}"
+                    />
+                     {{-- @error('name')
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                     @enderror --}}
+                    {{-- <input type="text" name="uname" required> --}}
                 </div>
-                <div class="form-item">
-                    <label for="sname"><b>Prezime</b></label>
-                    <input type="text" name="sname" required>
+                <div class="mb-6">
+                    <label for="surname"><b>Prezime</b></label>
+                    <input
+                        type="text"
+                        name="surname"
+                        value="{{old('surname')}}"
+                    />
+                    {{-- <input type="text" name="sname" required> --}}
                 </div>
-                <div class="form-item">
-                    <label for="birth-date"><b>Datum rođenja</b></label>
-                    <input type="text" name="birth-date" required>
+                <div class="mb-6">
+                    <label for="birthday"><b>Datum rođenja</b></label>
+                    <input
+                        type="date"
+                        name="birthday"
+                        value="{{old('birthday')}}"
+                    />
+                    {{-- <input type="text" name="birth-date" required> --}}
                 </div>
-                <div class="form-item">
+                <div class="mb-6">
                     <label for="city"><b>Grad</b></label>
-                    <input type="text" name="city" required>
+                    <input
+                        type="text"
+                        name="city"
+                        value="{{old('city')}}"
+                    />
+                    {{-- <input type="text" name="city" required> --}}
                 </div>
-                <div class="form-item">
+                <div class="mb-6">
                     <label for="email"><b>Email adresa</b></label>
-                    <input type="email" name="email" required>
+                    <input
+                        type="email"
+                        name="email"
+                        value="{{old('email')}}"
+                    />
+                    {{-- <input type="email" name="email" required> --}}
                 </div>
-                <div class="form-item">
-                    <label for="uname"><b>Korisničko ime</b></label>
-                    <input type="text" name="uname" required>
+                <div class="mb-6">
+                    <label for="username"><b>Korisničko ime</b></label>
+                    <input
+                        type="texy"
+                        name="username"
+                        value="{{old('username')}}"
+                    />
+                    {{-- <input type="text" name="uname" required> --}}
                 </div>
-                <div class="form-item">
-                    <label for="psw"><b>Šifra</b></label>
-                    <input type="password" name="psw" required>
+                <div class="mb-6">
+                    <label for="password"><b>Šifra</b></label>
+                    <input
+                        type="password"
+                        name="password"
+                        value="{{old('password')}}"
+                    />
+                    {{-- <input type="password" name="psw" required> --}}
                 </div>
                 <button type="submit" class="login-btn form-btn">Uloguj se</button>
             </div>
+        </form>
             <div class="links">
                 <a href="{{ url('/') }}" class="link-back">Nazad na početnu stranicu</a>
                 <a href="https://www.polovniautomobili.com/pomoc-pri-kupovini-automobila" class="link-back" target="_blank">Vodič za nove korisnike</a>
