@@ -9,6 +9,7 @@
         <title>UsedCars | Registracija</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
         <script src="{{ asset('js/index.js') }}" defer></script>
+        
     </head>
     <body>
         <header>
@@ -30,73 +31,91 @@
         </header>
         <section class="sign-in">
             <h1>Popunite podatke za prijavljivanje:</h1>
-        <form method="POST" action='/users'>
+        <form method="POST" action='/user'>
             @csrf
-            <div>
-                <div class="mb-6">
+            <div class = "form">
+                <div class="form-item">
                     <label for="name"><b>Ime</b></label>
                     <input
                         type="text"
                         name="name"
                         value="{{old('name')}}"
                     />
-                     {{-- @error('name')
-                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                     @enderror --}}
+                     @error('name')
+                      <p class="text-2">{{$message}}</p>
+                     @enderror
                     {{-- <input type="text" name="uname" required> --}}
                 </div>
-                <div class="mb-6">
+                <div class="form-item">
                     <label for="surname"><b>Prezime</b></label>
                     <input
                         type="text"
                         name="surname"
                         value="{{old('surname')}}"
                     />
+                    @error('surname')
+                      <p class="text-2">{{$message}}</p>
+                     @enderror
                     {{-- <input type="text" name="sname" required> --}}
                 </div>
-                <div class="mb-6">
+                <div class="form-item">
                     <label for="birthday"><b>Datum rođenja</b></label>
                     <input
                         type="date"
                         name="birthday"
                         value="{{old('birthday')}}"
                     />
+                    @error('birthday')
+                      <p class="text-2">{{$message}}</p>
+                     @enderror
                     {{-- <input type="text" name="birth-date" required> --}}
                 </div>
-                <div class="mb-6">
+                <div class="form-item">
                     <label for="city"><b>Grad</b></label>
                     <input
                         type="text"
                         name="city"
                         value="{{old('city')}}"
                     />
+                    @error('city')
+                      <p class="text-2">{{$message}}</p>
+                     @enderror
                     {{-- <input type="text" name="city" required> --}}
                 </div>
-                <div class="mb-6">
+                <div class="form-item">
                     <label for="email"><b>Email adresa</b></label>
                     <input
                         type="email"
                         name="email"
                         value="{{old('email')}}"
                     />
+                    @error('email')
+                      <p class="text-2">{{$message}}</p>
+                     @enderror
                     {{-- <input type="email" name="email" required> --}}
                 </div>
-                <div class="mb-6">
+                <div class="form-item">
                     <label for="username"><b>Korisničko ime</b></label>
                     <input
-                        type="texy"
+                        type="text"
                         name="username"
                         value="{{old('username')}}"
                     />
+                    @error('username')
+                      <p class="text-2">{{$message}}</p>
+                     @enderror
                     {{-- <input type="text" name="uname" required> --}}
                 </div>
-                <div class="mb-6">
+                <div class="form-item">
                     <label for="password"><b>Šifra</b></label>
                     <input
                         type="password"
                         name="password"
                         value="{{old('password')}}"
                     />
+                    @error('password')
+                      <p class="form-control">{{$message}}</p>
+                     @enderror
                     {{-- <input type="password" name="psw" required> --}}
                 </div>
                 <button type="submit" class="login-btn form-btn">Uloguj se</button>

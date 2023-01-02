@@ -22,5 +22,5 @@ Route::get('/', function () {
 //     return view('register');
 // });
 
-Route::get('/register', [UsersController::class, 'create']);
-Route::post('/users', [UsersController::class, 'store']);
+Route::get('/register', [UserController::class, 'create']);
+Route::post('/user', [UserController::class, 'store']);
