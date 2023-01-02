@@ -31,24 +31,26 @@
                 </ul>
             </nav>
             <div id="overlay">
-                <div class="login-form">
-                    <div class="login-data">
-                        <div class="login-item">
-                            <label for="uname">Korisničko ime</label>
-                            <input type="text" placeholder="Korisničko ime" name="uname" required>
+                <form method="POST" action='login'>
+                    <div class="login-form">
+                        <div class="login-data">
+                            <div class="login-item">
+                                <label for="uname">Korisničko ime</label>
+                                <input type="text" placeholder="Korisničko ime" name="uname" required>
+                            </div>
+                            <div class="login-item">
+                                <label for="psw">Šifra</label>
+                                <input type="password" placeholder="Šifra" name="psw" required>
+                            </div>
+                            <button type="submit" class="login-btn">Ulogus</button>
                         </div>
-                        <div class="login-item">
-                            <label for="psw">Šifra</label>
-                            <input type="password" placeholder="Šifra" name="psw" required>
+                        
+                        <div class="close-login">
+                            <button type="button" class="cancel-btn">Zatvori</button>
+                            <a href="{{ url('register') }}">Nemate svoj nalog? Napravite novi!</a>
                         </div>
-                        <button type="submit" class="login-btn">Ulogus</button>
                     </div>
-                    
-                    <div class="close-login">
-                        <button type="button" class="cancel-btn">Zatvori</button>
-                        <a href="{{ url('register') }}">Nemate svoj nalog? Napravite novi!</a>
-                    </div>
-                </div>
+                </form>
             </div>
         </header>
         <main>
