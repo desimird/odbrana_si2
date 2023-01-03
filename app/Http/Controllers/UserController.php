@@ -58,7 +58,7 @@ class UserController extends Controller
         //login
         auth()->login($user);
 
-        return redirect('/');//->with('message', 'User created and logged in.');
+        return redirect('/profile');//->with('message', 'User created and logged in.');
 
         
     }
@@ -106,5 +106,38 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function login(Request $request){
+
+        //dd($request);
+
+        $formFields = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+
+        ]);
+
+        //dd(auth()->attempt($formFields));
+        if(auth()->attempt($formFields)){
+            $request->session()->regenerate();
+
+            return redirect('/profile');//->with('message', 'You are now logged in!');  ///meseges da se doda
+
+        }
+
+        return redirect('/neradi');//->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+
+    }
+
+    public function logout(Request $request){
+        auth()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');//->with('message', 'You have been logout!');
     }
 }

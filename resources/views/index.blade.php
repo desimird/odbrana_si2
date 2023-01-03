@@ -32,18 +32,27 @@
             </nav>
             <div id="overlay">
                 <form method="POST" action='login'>
+                    @csrf
                     <div class="login-form">
-                        <div class="login-data">
+                        {{-- <div class="login-data"> --}}
                             <div class="login-item">
-                                <label for="uname">Korisničko ime</label>
-                                <input type="text" placeholder="Korisničko ime" name="uname" required>
+                                <label for="username">Korisničko ime</label>
+                                <input
+                                     type="text"
+                                     name="username"
+                                     value="{{old('username')}}"
+                                 />
                             </div>
                             <div class="login-item">
-                                <label for="psw">Šifra</label>
-                                <input type="password" placeholder="Šifra" name="psw" required>
+                                <label for="password">Šifra</label>
+                                <input
+                                     type="password"
+                                     name="password"
+                                     value="{{old('password')}}"
+                                 />
                             </div>
-                            <button type="submit" class="login-btn">Ulogus</button>
-                        </div>
+                            <button type="submit" class="login-btn">Uloguj se</button>
+                        {{-- </div> --}}
                         
                         <div class="close-login">
                             <button type="button" class="cancel-btn">Zatvori</button>
@@ -74,38 +83,28 @@
             <section class="car-ads">
                 <h1>Oglasi</h1>
                 <div class="car-ads-grid">
-                    <div class="car-ad">
-                        <img src="{{ asset('img/car_images/car1.jpg')}}" alt="A car">
-                        <div class="car-desc">
-                            <div class="car-name-price">
-                                <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                <p class="car-price">1,400.00$</p>
+                    @unless ($listings->isEmpty())
+                        @foreach ($listings as $listing)
+
+                            <div class="car-ad">
+                                <img src=" {{asset('img/car_images/car1.jpg')}} " alt="A car">
+                                <div class="car-desc">
+                                    <div class="car-name-price">
+                                        <h2 class="car-name">{{$listing->band.$listing->type}}</h2>
+                                        <p class="car-price">{{$listing->price}}</p>
+                                    </div>
+                                    <p class="car-details">{{$listing->fuel_type}}</p>
+                                </div>
                             </div>
-                            <p class="car-details">Benzin (2007) | Futog</p>
-                        </div>
-                    </div>
-                    <div class="car-ad">
-                        <img src="{{ asset('img/car_images/car2.jpg') }}" alt="A car">
-                        <div class="car-desc">
-                            <div class="car-name-price">
-                                <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                <p class="car-price">1,400.00$</p>
-                            </div>
-                            <p class="car-details">Benzin (2007) | Futog</p>
-                        </div>
-                    </div>
-                    <div class="car-ad">
-                        <img src="{{ asset('img/car_images/car3.jpg') }}" alt="A car">
-                        <div class="car-desc">
-                            <div class="car-name-price">
-                                <h2 class="car-name">Lorem, ipsum dolor.</h2>
-                                <p class="car-price">1,400.00$</p>
-                            </div>
-                            <p class="car-details">Benzin (2007) | Futog</p>
-                        </div>
-                    </div>
-                </div>
+                            
+                        @endforeach
+                        
+                    @endunless
+                    
             </section>
+            {{-- <div class="mt-6 p-4">
+                {{$listings->links()}}
+            </div> --}}
             <section class="guide">
                 <div class="guide-desc">
                     <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>

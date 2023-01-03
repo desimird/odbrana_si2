@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,16 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::get('/', [ListingController::class, 'index']);
 
 // Route::get('/register', function() {
 //     return view('register');
 // });
 
-Route::get('/register', [UserController::class, 'create']);
+
+// Route::get('/profile', function(){
+//     return view('profile');
+// });
+
+Route::get('/profile', [ListingController::class, 'my_listings'])->middleware('auth');
+
+
+Route::get('/adding_ad', [ListingController::class, 'create'])->name('login')->middleware('auth');
+Route::post('/listing', [ListingController::class, 'store']);
+
+
+
+Route::get('/register', [UserController::class, 'create'])->name('login')->middleware('guest');
 Route::post('/user', [UserController::class, 'store']);
 
 
-Route::get('login', [UserController::class, 'login']);//->name('login')->middleware('guest');
+Route::post('login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::get('logout', [UserController::class, 'logout']);
