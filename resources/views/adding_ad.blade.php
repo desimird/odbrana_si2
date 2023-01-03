@@ -4,11 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/adding-ad.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/adding-ad.css') }}">
         <title>UsedCars | Novi oglas</title>
-        <link rel="icon" type="image/x-icon" href="./images/icons/car-icon.png">
-        <script src="./js/index.js" defer></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
+        <script src="{{ asset('js/index.js') }}" defer></script>
     </head>
     <body>
         <header>
@@ -37,8 +38,8 @@
         <main>
             <section class="new-ad">
                 <h1>Unesite karakteristike automobila:</h1>
-                <form method="POST" action = '/listing'>
-                    @csrf
+                <form method="POST" action = '/listing' enctype="multipart/form-data">
+                    {!! csrf_field() !!}
                     <div class="ad-parts">
                         <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
                         <div class="ad-part">
@@ -160,7 +161,20 @@
                             </select>
                         </div>
                     </div>
-                    <button class="submit-btn">Pošalji oglas</button>
+                    <div class="row">
+                       <div class="col-6 mt-3">
+                        <label for="imgpath" class="col-md-4 col-form-label">Post Image</label>
+                        <input type="file" class="form-control-file" id="imgpath" name="imgpath">
+        
+                        @error('imgpath')
+                            <strong>{{ $message }}</strong>
+                        @enderror
+                       </div>
+                        
+                        <div class="col-6">
+                            <button class="submit-btn">Pošalji oglas</button>
+                        </div>
+                    </div>
                 </form>
             </section>
             <section class="guide">

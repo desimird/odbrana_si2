@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 
 class ListingController extends Controller
 {
@@ -52,14 +53,21 @@ class ListingController extends Controller
             'horse_power' => 'required',
             'motor_cc' => 'required',
             'no_doors' => 'required',
-            
+            'imgpath' => 'required|image',
         ]);
-
         // if($request->hasFile('logo')){
         //     $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         // }
         
         //dd( auth()->id());
+
+        $imagePath = request('imgpath')->store('uploads', 'public');
+        
+        //dd(public_path("storage/{$imagePath}"));
+        //Ovo ne radi i ne znam da namestim
+         $image = Image::make(public_path("storage/{$imagePath}"));
+         $image->save();
+
         $formFields['user_id'] = auth()->id();
         
 
