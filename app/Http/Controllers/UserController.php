@@ -13,7 +13,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         //
     }
@@ -58,7 +58,7 @@ class UserController extends Controller
         //login
         auth()->login($user);
 
-        return redirect('/profile');//->with('message', 'User created and logged in.');
+        return view('profile', compact('user'));//->with('message', 'User created and logged in.');
 
         
     }
@@ -109,9 +109,7 @@ class UserController extends Controller
     }
 
 
-    public function login(Request $request){
-
-        //dd($request);
+    public function login(Request $request, User $user){
 
         $formFields = $request->validate([
             'username' => 'required',
@@ -123,7 +121,7 @@ class UserController extends Controller
         if(auth()->attempt($formFields)){
             $request->session()->regenerate();
 
-            return redirect('/profile');//->with('message', 'You are now logged in!');  ///meseges da se doda
+            return redirect("/profile");//->with('message', 'You are now logged in!');  ///meseges da se doda
 
         }
 

@@ -38,8 +38,8 @@
         <main>
             <section class="new-ad">
                 <h1>Unesite karakteristike automobila:</h1>
-                <form method="POST" action = '/listing' enctype="multipart/form-data">
-                    {!! csrf_field() !!}
+                <form action='/listing' enctype="multipart/form-data" method="post">
+                    @csrf
                     <div class="ad-parts">
                         <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
                         <div class="ad-part">
@@ -133,9 +133,10 @@
                                 name="horse_power"
                                 value="{{old('horse_power')}}"
                             />
+
                             @error('horse_power')
-                                <p class="form-control">{{$message}}</p>
-                             @enderror
+                            <p class="form-control">{{$message}}</p>
+                            @enderror
                         </div>
                         <div class="ad-part">
                             <label for="drive_type">Vrsta pogona:</label>
@@ -161,20 +162,21 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="row">
-                       <div class="col-6 mt-3">
-                        <label for="imgpath" class="col-md-4 col-form-label">Post Image</label>
-                        <input type="file" class="form-control-file" id="imgpath" name="imgpath">
-        
-                        @error('imgpath')
-                            <strong>{{ $message }}</strong>
-                        @enderror
-                       </div>
-                        
-                        <div class="col-6">
-                            <button class="submit-btn">Pošalji oglas</button>
+                        <div class="col-6 mt-3">
+                             <label for="imgpath" class="col-md-4 col-form-label">Post Image</label>
+                             <input type="file" name="imgpath" id="imgpath" accept="image/*">
+                     
+                             @error('imgpath')
+                                 <strong>{{ $message }}</strong>
+                              @enderror
                         </div>
-                    </div>
+                         
+                         <div class="col-6">
+                             <button class="submit-btn">Pošalji oglas</button>
+                         </div>
+                     </div>
                 </form>
             </section>
             <section class="guide">

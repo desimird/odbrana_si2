@@ -31,7 +31,7 @@
                 </ul>
             </nav>
             <div id="overlay">
-                <form method="POST" action='login'>
+                <form method="POST" action='/login'>
                     @csrf
                     <div class="login-form">
                         {{-- <div class="login-data"> --}}
@@ -87,7 +87,7 @@
                         @foreach ($listings as $listing)
 
                             <div class="car-ad">
-                                <img src=" {{asset('img/car_images/car1.jpg')}} " alt="A car">
+                                <img src=" {{asset('storage/uploads/'. $listing->imgpath)}} " alt="A car">
                                 <div class="car-desc">
                                     <div class="car-name-price">
                                         <h2 class="car-name">{{$listing->band.$listing->type}}</h2>

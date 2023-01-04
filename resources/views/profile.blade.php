@@ -55,23 +55,20 @@
             <section class="profile-section car-ads" id="ads">
                 <h1>Moji oglasi</h1>
                 <div class="car-ads-grid">
-                    @unless ($listings->isEmpty())
-                        @foreach ($listings as $listing)
-
-                            <div class="car-ad">
-                                <img src=" {{asset('img/car_images/car1.jpg')}} " alt="A car">
-                                <div class="car-desc">
-                                    <div class="car-name-price">
-                                        <h2 class="car-name">{{$listing->band.$listing->type}}</h2>
-                                        <p class="car-price">{{$listing->price}}</p>
-                                    </div>
-                                    <p class="car-details">{{$listing->fuel_type}}</p>
+                    @foreach ($listings as $listing)
+                        <div class="car-ad">
+                            <img src="{{asset("storage/uploads/". $listing->imgpath)}} " alt="A car">
+                            <div class="car-desc">
+                                <div class="car-name-price">
+                                    <h2 class="car-name">{{$listing->band.$listing->type}}</h2>
+                                    <p class="car-price">{{$listing->price}}</p>
                                 </div>
+                                <p class="car-details">{{$listing->fuel_type}}</p>
                             </div>
-                            
-                        @endforeach
+                        </div>
+                    @endforeach
                         
-                    @endunless
+                   
                     
                     
             </section>

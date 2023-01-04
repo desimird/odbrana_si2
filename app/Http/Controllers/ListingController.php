@@ -6,6 +6,8 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ListingController extends Controller
 {
@@ -60,22 +62,22 @@ class ListingController extends Controller
         // }
         
         //dd( auth()->id());
-
-        $imagePath = request('imgpath')->store('uploads', 'public');
         
-        //dd(public_path("storage/{$imagePath}"));
-        //Ovo ne radi i ne znam da namestim
-         $image = Image::make(public_path("storage/{$imagePath}"));
-         $image->save();
+        $image = $request->file('imgpath');
+        $image->move(public_path().'/storage/uploads/', $img = 'img_'.Str::random(15).'.jpg');
+
+        // Ovo ne radi i ne znam da namestim
+        // $image = Image::make(public_path("storage/{$imagePath}"));
+        // $image->save();
 
         $formFields['user_id'] = auth()->id();
+        $formFields['imgpath'] = $img;
         
 
         Listing::create($formFields);
 
-        return redirect('/profile');//->with('message', 'Listing created successfully!');
+        return redirect("/profile");//->with('message', 'Listing created successfully!');
     }
-
     /**
      * Display the specified resource.
      *
