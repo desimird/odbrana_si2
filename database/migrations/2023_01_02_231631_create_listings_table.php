@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('horse_power');
             $table->string('motor_cc');
             $table->string('no_doors');
-            $table->enum('approved', array('0','1'))->default('0');
+            $table->boolean('approved')->default('false');
             $table->timestamps();
         });
     }
