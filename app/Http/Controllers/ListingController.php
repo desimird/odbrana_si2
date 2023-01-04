@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ListingController extends Controller
 {
@@ -52,22 +55,29 @@ class ListingController extends Controller
             'horse_power' => 'required',
             'motor_cc' => 'required',
             'no_doors' => 'required',
-            
+            'imgpath' => 'required|image',
         ]);
-
         // if($request->hasFile('logo')){
         //     $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         // }
         
         //dd( auth()->id());
+        
+        $image = $request->file('imgpath');
+        $image->move(public_path().'/storage/uploads/', $img = 'img_'.Str::random(15).'.jpg');
+
+        // Ovo ne radi i ne znam da namestim
+        // $image = Image::make(public_path("storage/{$imagePath}"));
+        // $image->save();
+
         $formFields['user_id'] = auth()->id();
+        $formFields['imgpath'] = $img;
         
 
         Listing::create($formFields);
 
-        return redirect('/profile');//->with('message', 'Listing created successfully!');
+        return redirect("/profile");//->with('message', 'Listing created successfully!');
     }
-
     /**
      * Display the specified resource.
      *

@@ -23,7 +23,8 @@ class Listing extends Model
         'horse_power',
         'motor_cc',
         'no_doors',
-        'user_id'
+        'user_id',
+        'imgpath',
     ];
 
     public function user(){
