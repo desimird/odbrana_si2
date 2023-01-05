@@ -4,17 +4,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <title>UsedCars</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
         <script src="{{ asset('js/index.js') }}" defer></script>
-        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
-  <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script> --}}
     </head>
     <body>
         <header>
@@ -28,9 +22,9 @@
             </div>
             <nav id="nav">
                 <ul>
-                    <li><a href=" {{ url('/') }}">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
+                    <li><a href=" {{ url('/admin/index') }}">Početna</a></li>
+                    <li><a href="{{ url('/admin/on_hold')}}">Oglasi na cekanju</a></li>
+                    <li><a href="{{ url('/admin/users')}}">Korisnici</a></li>
                     @if (auth()->user())
                         <li>
                             <div>
@@ -85,35 +79,35 @@
             </div>
         </header>
         <main>
-            <form class ="search" action="/">
-            <section class="search">
-                
-                <h1>Dobrodošli na UsedCars stranicu!</h1>
-                <label htmlFor="search-bar">Izaberi kriterijum za pretragu: </label>
-                
-                <select id="search-bar" name="tags" class="search-select">
-                    <option value="brand" default>Marka vozila</option>
-                    <option value="type">Tip vozila</option>
-                    <option value="manuf_year">Godina proizvodnje</option>
-                    <option value="kilometers">Pređeni kilometri</option>
-                    <option value="price">Cena</option>
-                    <option value="drive_type">Vrsta pogona</option>
-                    <option value="shifter_type">Vrsta menjača</option>
-                </select>
-
-                        <div class="search-text">
-                            <input type="text" name="search_input" id="search-input" />
-                            <button type="submit" class="login-btn">Pretraži</button>
-                        </div>
+            <form class ="search" action="/admin/on_hold/">
+                <section class="search">
                     
-            </section>
-        </form>
+                    <h1>Dobrodošli na UsedCars stranicu!</h1>
+                    <label htmlFor="search-bar">Izaberi kriterijum za pretragu: </label>
+                    
+                    <select id="search-bar" name="tags" class="search-select">
+                        <option value="brand" default>Marka vozila</option>
+                        <option value="type">Tip vozila</option>
+                        <option value="manuf_year">Godina proizvodnje</option>
+                        <option value="kilometers">Pređeni kilometri</option>
+                        <option value="price">Cena</option>
+                        <option value="drive_type">Vrsta pogona</option>
+                        <option value="shifter_type">Vrsta menjača</option>
+                    </select>
+    
+                            <div class="search-text">
+                                <input type="text" name="search_input" id="search-input" />
+                                <button type="submit" class="login-btn">Pretraži</button>
+                            </div>
+                        
+                </section>
+            </form>
             <section class="car-ads">
                 <h1>Oglasi</h1>
                 <div class="car-ads-grid">
                     @unless ($listings->isEmpty())
                         @foreach ($listings as $listing)
-
+                        
                             <div class="car-ad">
                                 <img src=" {{asset('storage/uploads/'. $listing->imgpath)}} " alt="A car">
                                 <div class="car-desc">
@@ -123,7 +117,10 @@
                                     </div>
                                     <p class="car-details">{{$listing->fuel_type}}</p>
                                 </div>
+                                    {{-- <a href="/deletepost/{{$listing->id}}">Obrisi oglas</a> --}}
+                                   <button class="btn btn-success" onclick="window.location.href='http://localhost:8000/approve/{{$listing->id}}'">Odobri oglas</button>
                             </div>
+                    
                             
                         @endforeach
                         

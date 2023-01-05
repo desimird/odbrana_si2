@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +45,25 @@ Route::post('/user', [UserController::class, 'store']);
 
 Route::post('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::get('/logout', [UserController::class, 'logout']);
+
+Route::post('/updatepsw', [UserController::class, 'update_password']);
+
+Route::get('/destroy', [UserController::class, 'destroy']);
+
+Route::get('/admin/index', [ListingController::class, 'admin_listings'])->middleware('auth');
+
+Route::get('/deletepost/{id}', [ListingController::class, 'destroy']);
+
+// Route::get('/deletepost/{id}', function ($id) {
+//     dd($id);
+//     return $id;
+// });
+
+
+Route::get('admin/on_hold', [ListingController::class, 'listings_on_hold']);
+
+Route::get('/approve/{id}', [ListingController::class, 'approve']);
+
+Route::get('admin/users', [UserController::class, 'admin_users']);
+
+Route::get('/delete_user/{id}', [UserController::class, 'delete_user']);

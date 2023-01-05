@@ -4,12 +4,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
         <title>UsedCars | Profil korisnika</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
         <script src="{{asset('js/index.js')}}" defer></script>
         <script src="{{asset('js/profile.js')}}" defer></script>
+        <script src="{{asset('js/cng_pwd.js')}}" defer></script>
     </head>
     <body>
         <header>
@@ -28,7 +30,7 @@
                     <li><a href="#">Vesti</a></li>
                     <li>
                         <div>
-                            <p> Dobrodošli, {{auth()->user()->name}} </p>
+                            <a href="/profile"> Dobrodošli, {{auth()->user()->name}} </a>
                         </div>
                     </li>
                 </ul>
@@ -55,18 +57,22 @@
             <section class="profile-section car-ads" id="ads">
                 <h1>Moji oglasi</h1>
                 <div class="car-ads-grid">
-                    @foreach ($listings as $listing)
-                        <div class="car-ad">
-                            <img src="{{asset("storage/uploads/". $listing->imgpath)}} " alt="A car">
-                            <div class="car-desc">
-                                <div class="car-name-price">
-                                    <h2 class="car-name">{{$listing->band.$listing->type}}</h2>
-                                    <p class="car-price">{{$listing->price}}</p>
+                    @unless ($listings->isEmpty())
+                            @foreach ($listings as $listing)
+                            <div class="car-ad">
+                                <img src="{{asset("storage/uploads/". $listing->imgpath)}} " alt="A car">
+                                <div class="car-desc">
+                                    <div class="car-name-price">
+                                        <h2 class="car-name">{{$listing->band.$listing->type}}</h2>
+                                        <p class="car-price">{{$listing->price}}</p>
+                                    </div>
+                                    <p class="car-details">{{$listing->fuel_type}}</p>
+                                    <p class="car-details text-primary">{{($listing->on_hold == '1') ? "Odoboren" : 'Na cekanju';}}</p>
                                 </div>
-                                <p class="car-details">{{$listing->fuel_type}}</p>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endunless
+                    
                         
                    
                     
@@ -111,9 +117,40 @@
                     <p>Email adresa</p>
                     <p class="bold">{{ auth()->user()->email }}</p>
                 </div>
-                <button class="profile-btn">Promeni lozinku</button>
-                <button class="profile-btn">Obriši nalog</button>
+                <button class="profile-btn modal">Promeni lozinku</button>
+                <button onclick="window.location.href = 'http://localhost:8000/destroy'" class="profile-btn" >Obriši nalog</button>
             </section>
+            <div id="overlay1">
+                <form  class="login-form" method="POST" action='/updatepsw'>
+                    @csrf
+                    <div>
+                        {{-- <div class="login-data"> --}}
+                            <div class="login-item">
+                                <label for="password">Unesite trenutnu lozinku</label>
+                                <input
+                                     type="password"
+                                     name="password"
+                                     value="{{old('password')}}"
+                                 />
+                            </div>
+                            <div class="login-item">
+                                <label for="newpassword">Nova lozinka</label>
+                                <input
+                                     type="password"
+                                     name="newpassword"
+                                     value="{{old('newpassword')}}"
+                                 />
+                            </div>
+                            {{-- potvrdi lozinku mozda --}}
+                            <button type="submit" class="login-btn">Promeni lozinku</button>
+                        {{-- </div> --}}
+                        
+                        <div class="close-login">
+                            <button type="button" class="cancel-btn">Zatvori</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <section class="guide">
                 <div class="guide-desc">
                     <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>

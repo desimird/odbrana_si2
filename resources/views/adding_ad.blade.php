@@ -26,11 +26,18 @@
                     <li><a href="/profile">Početna</a></li>
                     <li><a href="#">Pretraga</a></li>
                     <li><a href="#">Vesti</a></li>
-                    <li>
-                        <div>
-                            <p> Dobrodošli, {{auth()->user()->name}} </p>
+                    @if (auth()->user())
+                        <li>
+                            <div>
+                                <a href="/profile"> Dobrodošli, {{auth()->user()->name}} </a>
+                            </div>
+                        </li>
+                    @else
+                        <div class="buttons">
+                            <li><button class="modal-btn">Prijavi se</button></li>
+                            <li><a href="{{ url('register') }}" class="login-btn">Registruj se</a></li>
                         </div>
-                    </li>
+                    @endif
                 </ul>
             </nav>
             

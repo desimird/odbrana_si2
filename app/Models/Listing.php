@@ -30,4 +30,10 @@ class Listing extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeFilter($query, array $filters){
+        if($filters['search_input'] ?? false){
+            $query->where($filters['tags'], 'like', request('search_input'));
+        }
+    }
 }

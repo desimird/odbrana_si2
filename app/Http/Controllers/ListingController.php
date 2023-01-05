@@ -18,9 +18,13 @@ class ListingController extends Controller
      */
     public function index()
     {
-        $listings = Listing::latest()->paginate(10);
+        $listings = Listing::where('approved','1')->latest()->filter(request(['tags', 'search_input']))->paginate(10);
         //dd($listings);
+
+     
         return view('index', ['listings'=> $listings]);
+
+        
 
     }
 
@@ -120,7 +124,10 @@ class ListingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Listing::whereId($id)->delete();
+        return back();
+        //Listing::whereId(auth()->user()->id)->delete();
+        //return redirect('/');
     }
     
 
@@ -131,5 +138,19 @@ class ListingController extends Controller
 
     }
 
+    public function admin_listings(){
+        return view('admin_index', ['listings' => Listing::where('approved', '1')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
+    }
+
+
+    public function listings_on_hold(){
+        return view('admin_on_hold', ['listings' => Listing::where('approved', '0')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
+    }
+
+    public function approve($id){
+        //dd(Listing::whereId($id));
+        Listing::whereId($id)->update(['approved' => '1']);
+        return back();
+    }
 
 }
