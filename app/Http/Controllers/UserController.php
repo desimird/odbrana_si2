@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -46,7 +47,8 @@ class UserController extends Controller
             'surname' => ['required'],
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'min:6']
+            'password' => ['required', 'min:6'],
+            'image' => '',
 
         ]);
         #dd($formFields);
@@ -181,6 +183,21 @@ class UserController extends Controller
     public function delete_user($id) {
         Listing::where('user_id',$id)->delete();
         User::whereId($id)->delete();
+        return back();
+    }
+
+    public function change_profile(Request $request) {
+        $request->validate([
+            'image' => 'required|image',
+        ]);
+
+        $image = $request->file('image');
+        $image->move(public_path().'/storage/profileImages/', $img = 'img_'.Str::random(15).'.jpg');
+        
+        User::whereId(auth()->user()->id)->update([
+            'image' => $img
+        ]);
+
         return back();
     }
 }

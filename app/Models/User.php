@@ -25,7 +25,7 @@ class User extends Authenticatable
         'city',
         'surname',
         'birthday',
-        
+        'image',
     ];
 
     /**
@@ -49,5 +49,9 @@ class User extends Authenticatable
 
     public function listings(){
         return $this->hasMany(Listing::class, 'user_id');
+    }
+
+    public function profileImage() {
+        return ($this->image) ? asset('/storage/profileImages/'. $this->image) : asset('/storage/profileImages/No_image_available.png');
     }
 }

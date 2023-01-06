@@ -125,7 +125,7 @@ class ListingController extends Controller
     public function destroy($id)
     {
         Listing::whereId($id)->delete();
-        return back();
+        return redirect('/admin/index');
         //Listing::whereId(auth()->user()->id)->delete();
         //return redirect('/');
     }

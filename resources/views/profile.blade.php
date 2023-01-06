@@ -40,8 +40,23 @@
             <section class="profile">
                 <div class="profile-info">
                     {{-- POPRAVITI: UBACITI PROFILNE --}}
-                    <img src="./images/cvrle.jpg" alt="Profile image of user" class="profile-image">
-                    <h2 class="profile-name">{{ auth()->user()->username }}</h2>
+                    <form action='/changeProfile' enctype="multipart/form-data" method="post">
+                        @csrf
+                        <div>
+                            <label for="image" class="col-form-label">Change Profile Picture</label>
+                            <input type="file" name="image" id="image" accept="image/*">
+                            
+                            @error('image')
+                                <strong>{{ $message }}</strong>
+                            @enderror
+                        </div>
+                         
+                        <div>
+                            <button class="submit-btn mr-5">Update</button>
+                        </div>
+                    </form>
+                        <img src="{{ auth()->user()->profileImage() }}" alt="Profile image of user" class="rounded-circle w-50">
+                        <h2 class="profile-name">{{ auth()->user()->username }}</h2>
                 </div>
                 <div class="profile-options">
                     <ul>
