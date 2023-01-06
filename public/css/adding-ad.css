@@ -23,6 +23,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1rem;
+    
 }
 
 .ad-part {

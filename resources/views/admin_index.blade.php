@@ -118,7 +118,7 @@
                                     <p class="car-details">{{$listing->fuel_type}}</p>
                                 </div>
                                     {{-- <a href="/deletepost/{{$listing->id}}">Obrisi oglas</a> --}}
-                                   <button class="btn btn-danger" onclick="window.location.href='http://localhost:8000/deletepost/{{$listing->id}}')">Obrisi oglas</button>
+                                   <button class="btn btn-danger" onclick="window.location.href='http://localhost:8000/deletepost/{{$listing->id}}'">Obrisi oglas</button>
                             </div>
                     
                             

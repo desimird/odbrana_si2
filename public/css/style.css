@@ -138,6 +138,18 @@ nav ul li a {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
+#overlay2 {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.3);
+}
 .login-form {
     margin: 30% auto;
     padding: 1em 2em;
@@ -388,6 +400,9 @@ footer p {
     }
     #overlay1 {
         background-color: rgba(0, 0, 0, 0.6);
+    }
+    #overlay2 {
+        background-color: rgba(255, 255, 255, 1);
     }
 
     .guide {
