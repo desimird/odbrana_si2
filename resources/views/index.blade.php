@@ -4,10 +4,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/adding-ad.css') }}">
         <title>UsedCars</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
         <script src="{{ asset('js/index.js') }}" defer></script>
+        <script src="{{ asset('js/cng_pwd.js') }}" defer></script>
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -104,10 +107,154 @@
                         <div class="search-text">
                             <input type="text" name="search_input" id="search-input" />
                             <button type="submit" class="login-btn">Pretraži</button>
+                            
                         </div>
+                        
                     
             </section>
         </form>
+        <div><button class="login-btn modal1">Detaljna pretraga</button></div>
+        <div id="overlay2">
+            <section class="new-ad" >
+                <h1 text-align: center>Unesite karakteristike automobila:</h1>
+                <form action='/det_search' enctype="multipart/form-data" method="post">
+                    @csrf
+                    <div class="ad-parts" width="80%" justify-content:space-between>
+                        <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
+                        <div class="ad-part">
+                            <label for="state">Stanje:</label>
+                            <select name ="state"id="state">
+                                <option value="polovno">Polovno vozilo</option>
+                                <option value="novo">Novo vozilo</option>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="brand">Marka:</label>
+                            <input
+                                type="text"
+                                name="brand"
+                                value="{{old('brand')}}"
+                            />
+                            {{-- @error('brand')
+                                <p class="form-control">{{$message}}</p>
+                             @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="type">Model:</label>
+                            <input
+                                type="text"
+                                name="type"
+                                value="{{old('type')}}"
+                            />
+                            {{-- @error('type')
+                                <p class="form-control">{{$message}}</p>
+                             @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="manuf_year">Godište:</label>
+                            <input
+                                type="text"
+                                name="manuf_year"
+                                value="{{old('manuf_year')}}"
+                            />
+                            {{-- @error('manuf_year')
+                                <p class="form-control">{{$message}}</p>
+                             @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="kilometers">Kilometraža:</label>
+                            <input
+                                type="text"
+                                name="kilometers"
+                                value="{{old('kilometers')}}"
+                            />
+                            {{-- @error('kilometers')
+                                <p class="form-control">{{$message}}</p>
+                             @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="price">Cena:</label>
+                            <input
+                                type="text"
+                                name="price"
+                                value="{{old('price')}}"
+                            />
+                            {{-- @error('price')
+                                <p class="form-control">{{$message}}</p>
+                             @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="fuel_type">Gorivo:</label>
+                            <select name=fuel_type id="fuel_type">
+                                <option value="dizel">Dizel</option>
+                                <option value="benzin">Benzin</option>
+                                <option value="tng">Benzin + Gas (TNG)</option>
+                                <option value="cng">Benzin + Metan (CNG)</option>
+                                <option value="elektricni">Električni pogon</option>
+                                <option value="hibridni">Hibridni pogon</option>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="motor_cc">Kubikaža:</label>
+                            <input
+                                type="text"
+                                name="motor_cc"
+                                value="{{old('motor_cc')}}"
+                            />
+                            {{-- @error('motor_cc')
+                                <p class="form-control">{{$message}}</p>
+                             @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="horse_power">Snaga motora:</label>
+                            <input
+                                type="text"
+                                name="horse_power"
+                                value="{{old('horse_power')}}"
+                            />
+
+                            {{-- @error('horse_power')
+                            <p class="form-control">{{$message}}</p>
+                            @enderror --}}
+                        </div>
+                        <div class="ad-part">
+                            <label for="drive_type">Vrsta pogona:</label>
+                            <select name="drive_type"id="drive_type">
+                                <option value="prednji">Prednji</option>
+                                <option value="zadnji">Zadnji</option>
+                                <option value="na_sve_tockove">4x4</option>
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="shifter_type">Menjač:</label>
+                            <select name="shifter_type" id="shifter_type">
+                                <option value="Manuelni menjač">Manuelni menjač</option>
+                                <option value="Automatski menjač">Automatski menjač</option>
+                                    
+                            </select>
+                        </div>
+                        <div class="ad-part">
+                            <label for="no_doors">Broj vrata:</label>
+                            <select name="no_doors"id="no_doors">
+                                <option value="2/3">2/3</option>
+                                <option value="4/5">4/5</option>
+                            </select>
+                        </div>
+                    
+
+                    
+                    </div>
+                        <div>
+                            <div class="col-6">
+                                <button class="submit-btn">Pretrazi</button>
+                                
+                            </div>
+                        </div>
+                </form>
+                
+            </section>
+        </div>
+        {{-- <button class="cancel-btn1">skloni se se</button> --}}
             <section class="car-ads">
                 <h1>Oglasi</h1>
                 <div class="car-ads-grid">

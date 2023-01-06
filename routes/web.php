@@ -67,3 +67,6 @@ Route::get('/approve/{id}', [ListingController::class, 'approve']);
 Route::get('admin/users', [UserController::class, 'admin_users']);
 
 Route::get('/delete_user/{id}', [UserController::class, 'delete_user']);
+
+
+Route::post('/det_search', [ListingController::class, 'det_search']);

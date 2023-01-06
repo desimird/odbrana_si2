@@ -148,9 +148,63 @@ class ListingController extends Controller
     }
 
     public function approve($id){
-        //dd(Listing::whereId($id));
+
         Listing::whereId($id)->update(['approved' => '1']);
         return back();
     }
 
+    public function det_search(Request $request){
+   
+        $listings = Listing::where(function ($query) use ($request) {
+            if($request->brand){
+                $query->where('brand', 'like', '%' . $request->brand . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->type){
+                $query->where('type', 'like', '%' . $request->type . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->manuf_year){
+                $query->where('manuf_year', 'like', '%' . $request->manuf_year . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->kilometers){
+                $query->where('kilometers', 'like', '%' . $request->kilometers . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->drive_type){
+                $query->where('drive_type', 'like', '%' . $request->drive_type . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->shifter_type){
+                $query->where('shifter_type', 'like', '%' . $request->shifter_type . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->price){
+                $query->where('price', 'like', '%' . $request->price . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->state){
+                $query->where('state', 'like', '%' . $request->state . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->fuel_type){
+                $query->where('fuel_type', 'like', '%' . $request->fuel_type . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->horse_power){
+                $query->where('horse_power', 'like', '%' . $request->horse_power . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->motor_cc){
+                $query->where('motor_cc', 'like', '%' . $request->motor_cc . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->motor_cc){
+                $query->where('no_doors', 'like', '%' . $request->no_doors . '%');
+            }
+        })->get();
+
+        return view('index', ['listings'=> $listings]);
+    }
 }
