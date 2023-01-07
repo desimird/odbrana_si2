@@ -69,3 +69,5 @@ Route::get('admin/users', [UserController::class, 'admin_users']);
 Route::get('/delete_user/{id}', [UserController::class, 'delete_user']);
 
 Route::post('/changeProfile', [UserController::class, 'change_profile']);
+
+Route::get('/singlead/{id}', [ListingController::class, 'singlead']);

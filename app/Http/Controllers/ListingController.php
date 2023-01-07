@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class ListingController extends Controller
 {
@@ -125,7 +126,7 @@ class ListingController extends Controller
     public function destroy($id)
     {
         Listing::whereId($id)->delete();
-        return redirect('/admin/index');
+        return back();
         //Listing::whereId(auth()->user()->id)->delete();
         //return redirect('/');
     }
@@ -151,6 +152,14 @@ class ListingController extends Controller
         //dd(Listing::whereId($id));
         Listing::whereId($id)->update(['approved' => '1']);
         return back();
+    }
+
+    public function singlead($id) {
+        //Ovo moze mnogo lepse sigurno
+        $listing = Listing::whereId($id)->get();
+        $user = User::whereId($listing[0]->user_id)->get();
+        $other_listings = Listing::where('user_id', $listing[0]->user_id)->get();
+        return view('single_ad', compact('listing', 'user', 'other_listings'));
     }
 
 }

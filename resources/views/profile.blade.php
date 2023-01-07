@@ -39,7 +39,7 @@
         <main>
             <section class="profile">
                 <div class="profile-info">
-                    {{-- POPRAVITI: UBACITI PROFILNE --}}
+                    
                     <form action='/changeProfile' enctype="multipart/form-data" method="post">
                         @csrf
                         <div>
@@ -87,6 +87,7 @@
                             </div>
                         @endforeach
                     @endunless
+                </div>
                     
                         
                    

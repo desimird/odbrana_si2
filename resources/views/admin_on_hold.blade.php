@@ -79,7 +79,7 @@
             </div>
         </header>
         <main>
-            <form class ="search" action="/admin/on_hold/">
+            <form class ="search" action="/admin/on_hold/" method="POST">
                 <section class="search">
                     
                     <h1>Dobrodošli na UsedCars stranicu!</h1>
