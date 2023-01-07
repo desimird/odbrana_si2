@@ -39,24 +39,25 @@
         <main>
             <section class="profile">
                 <div class="profile-info">
-                    
-                    <form action='/changeProfile' enctype="multipart/form-data" method="post">
+                    <div class="profile-image-name">
+                        <img src="{{ auth()->user()->profileImage() }}" alt="Profile image of user" class="profile-image">
+                        <h2 class="profile-name">{{ auth()->user()->username }}</h2>
+                    </div>
+                    <form action='/changeProfile' enctype="multipart/form-data" method="post" class="change-picture">
                         @csrf
-                        <div>
-                            <label for="image" class="col-form-label">Change Profile Picture</label>
-                            <input type="file" name="image" id="image" accept="image/*">
+                        <div class="change-picture-div">
+                            <label for="image" class="col-form-label">Promenite profilnu sliku:</label>
+                            <input type="file" name="image" id="image" accept="image/*" class="image-input">
                             
                             @error('image')
                                 <strong>{{ $message }}</strong>
                             @enderror
                         </div>
-                         
-                        <div>
-                            <button class="submit-btn mr-5">Update</button>
+                    
+                        <div class="btn-div">
+                            <button class="submit-btn mr-5">Ažuriraj</button>
                         </div>
                     </form>
-                        <img src="{{ auth()->user()->profileImage() }}" alt="Profile image of user" class="rounded-circle w-50">
-                        <h2 class="profile-name">{{ auth()->user()->username }}</h2>
                 </div>
                 <div class="profile-options">
                     <ul>
@@ -82,7 +83,7 @@
                                         <p class="car-price">{{$listing->price}}</p>
                                     </div>
                                     <p class="car-details">{{$listing->fuel_type}}</p>
-                                    <p class="car-details text-primary">{{($listing->approved == '1') ? "Odoboren" : 'Na cekanju';}}</p>
+                                    <p class="car-details text-primary">{{($listing->on_hold == '1') ? "Odoboren" : 'Na cekanju';}}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -97,16 +98,18 @@
             <section class="profile-section saved-searches" id="searches">
                 <h1>Sačuvane pretrage</h1>
                 <ul>
-                    @unless ($my_searches->isEmpty())
-                        @foreach ($my_searches as $my_search)
-                            <a href="/det_search/{{$my_search->id}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter;"><path d="M13.707 2.293A.996.996 0 0 0 13 2H6c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V9a.996.996 0 0 0-.293-.707l-6-6zM6 4h6.586L18 9.414l.002 9.174-2.568-2.568c.35-.595.566-1.281.566-2.02 0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4c.739 0 1.425-.216 2.02-.566L16.586 20H6V4zm6 12c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
-                                <p>{{$my_search->id}} .Pretraga</p>
-                            </a>
-                        @endforeach
-                        
-                    @endunless
-                    
+                    <li class="search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter;"><path d="M13.707 2.293A.996.996 0 0 0 13 2H6c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V9a.996.996 0 0 0-.293-.707l-6-6zM6 4h6.586L18 9.414l.002 9.174-2.568-2.568c.35-.595.566-1.281.566-2.02 0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4c.739 0 1.425-.216 2.02-.566L16.586 20H6V4zm6 12c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
+                        <p>audi</p>
+                    </li>
+                    <li class="search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter;"><path d="M13.707 2.293A.996.996 0 0 0 13 2H6c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V9a.996.996 0 0 0-.293-.707l-6-6zM6 4h6.586L18 9.414l.002 9.174-2.568-2.568c.35-.595.566-1.281.566-2.02 0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4c.739 0 1.425-.216 2.02-.566L16.586 20H6V4zm6 12c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
+                        <p>dizel</p>
+                    </li>
+                    <li class="search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter;"><path d="M13.707 2.293A.996.996 0 0 0 13 2H6c-1.103 0-2 .897-2 2v16c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V9a.996.996 0 0 0-.293-.707l-6-6zM6 4h6.586L18 9.414l.002 9.174-2.568-2.568c.35-.595.566-1.281.566-2.02 0-2.206-1.794-4-4-4s-4 1.794-4 4 1.794 4 4 4c.739 0 1.425-.216 2.02-.566L16.586 20H6V4zm6 12c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2z"></path></svg>
+                        <p>2/3</p>
+                    </li>
                 </ul>
             </section>
             <section class="profile-section profile-data" id="data">

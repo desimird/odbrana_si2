@@ -22,7 +22,7 @@ body {
 /* Header section */
 header {
     background-color: var(--black);
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
 }
@@ -49,6 +49,7 @@ menu {
 }
 
 nav ul {
+    margin-bottom: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -127,6 +128,7 @@ nav ul li a {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
 #overlay1 {
     display: none;
     position: fixed;
@@ -138,18 +140,7 @@ nav ul li a {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
-#overlay2 {
-    display: none;
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.3);
-}
+
 .login-form {
     margin: 30% auto;
     padding: 1em 2em;
@@ -367,6 +358,7 @@ footer p {
 }
 
 @media screen and (min-width: 800px) {
+
     header,
     nav ul {
         flex-direction: row;
@@ -385,6 +377,7 @@ footer p {
     menu {
         width: 35%;
     }
+
     nav {
         width: 65%;
     }
@@ -398,11 +391,9 @@ footer p {
     #overlay {
         background-color: rgba(0, 0, 0, 0.6);
     }
+
     #overlay1 {
         background-color: rgba(0, 0, 0, 0.6);
-    }
-    #overlay2 {
-        background-color: rgba(255, 255, 255, 1);
     }
 
     .guide {
