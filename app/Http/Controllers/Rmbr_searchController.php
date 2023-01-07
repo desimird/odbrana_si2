@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rmbr_search;
 use Illuminate\Http\Request;
 
 class Rmbr_searchController extends Controller
@@ -34,7 +35,14 @@ class Rmbr_searchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$formFields = $request->validate();
+        
+        $request['user_id'] = auth()->id();
+        //dd($request->request->all());
+        
+
+        Rmbr_search::create($request->request->all());
+        return redirect('/');
     }
 
     /**

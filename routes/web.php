@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\Rmbr_searchController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -70,3 +71,8 @@ Route::get('/delete_user/{id}', [UserController::class, 'delete_user']);
 
 
 Route::post('/det_search', [ListingController::class, 'det_search']);
+
+Route::get('/det_search/{id}', [ListingController::class, 'det_search_rmb']);
+
+
+Route::post('/rmbr_search', [Rmbr_searchController::class, 'store']);

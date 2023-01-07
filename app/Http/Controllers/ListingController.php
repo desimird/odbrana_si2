@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Rmbr_search;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
@@ -134,7 +135,7 @@ class ListingController extends Controller
     public function my_listings(){
 
         //dd(auth()->user()->listings()->get());
-        return view('profile', ['listings' => auth()->user()->listings()->get()]);
+        return view('profile', ['listings' => auth()->user()->listings()->get(), 'my_searches' => auth()->user()->rmbr_searches()->get()]);
 
     }
 
@@ -207,4 +208,64 @@ class ListingController extends Controller
 
         return view('index', ['listings'=> $listings]);
     }
+
+
+    public function det_search_rmb($id){
+
+        $my_search = Rmbr_search::find($id);
+        //dd($my_search);
+        $listings = Listing::where(function ($query) use ($my_search) {
+            if($my_search->brand){
+                $query->where('brand', 'like', '%' . $my_search->brand . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->type){
+                $query->where('type', 'like', '%' . $my_search->type . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->manuf_year){
+                $query->where('manuf_year', 'like', '%' . $my_search->manuf_year . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->kilometers){
+                $query->where('kilometers', 'like', '%' . $my_search->kilometers . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->drive_type){
+                $query->where('drive_type', 'like', '%' . $my_search->drive_type . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->shifter_type){
+                $query->where('shifter_type', 'like', '%' . $my_search->shifter_type . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->price){
+                $query->where('price', 'like', '%' . $my_search->price . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->state){
+                $query->where('state', 'like', '%' . $my_search->state . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->fuel_type){
+                $query->where('fuel_type', 'like', '%' . $my_search->fuel_type . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->horse_power){
+                $query->where('horse_power', 'like', '%' . $my_search->horse_power . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->motor_cc){
+                $query->where('motor_cc', 'like', '%' . $my_search->motor_cc . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->motor_cc){
+                $query->where('no_doors', 'like', '%' . $my_search->no_doors . '%');
+            }
+        })->get();
+
+        return view('index', ['listings'=> $listings]);
+    }
+
+    
 }

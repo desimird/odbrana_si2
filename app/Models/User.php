@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function listings(){
         return $this->hasMany(Listing::class, 'user_id');
     }
+
+    public function rmbr_searches(){
+        return $this->hasMany(Rmbr_search::class, 'user_id');
+    }
 }
