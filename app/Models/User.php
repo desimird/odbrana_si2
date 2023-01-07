@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function profileImage() {
         return ($this->image) ? asset('/storage/profileImages/'. $this->image) : asset('/storage/profileImages/No_image_available.png');
     }
+
+    public function rmbr_searches(){
+        return $this->hasMany(Rmbr_search::class, 'user_id');
+    }
 }
