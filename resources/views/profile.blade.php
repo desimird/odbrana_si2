@@ -82,7 +82,7 @@
                                         <p class="car-price">{{$listing->price}}</p>
                                     </div>
                                     <p class="car-details">{{$listing->fuel_type}}</p>
-                                    <p class="car-details text-primary">{{($listing->on_hold == '1') ? "Odoboren" : 'Na cekanju';}}</p>
+                                    <p class="car-details text-primary">{{($listing->approved == '1') ? "Odoboren" : 'Na cekanju';}}</p>
                                 </div>
                             </div>
                         @endforeach
