@@ -42,16 +42,26 @@
                          @unless ($my_searches->isEmpty())
                         @foreach ($my_searches as $search)
                             <li>
-                                <div class="car-ad">
+                                <div class="searches">
                                 
-                                    <div class="car-desc">
-                                        <div class="car-name-price">
-                                            <h2 class="car-name">Stanje = {{$search->state}}; Marka = {{$search->brand}}; Model = {{$search->type}}; Godiste = {{$search->manuf_year}}; Kilometraza = {{$search->kilometers}}; Cena = {{$search->price}}; Gorivo = {{$search->fuel_type}}; Kubikaza = {{$search->motor_cc}}; Snaga motora: = {{$search->horse_power}}; Vrsta pogona = {{$search->drive}}; Menjac = {{$search->shift_type}}; Broj vrata = {{$search->no_doors}}; 
-                                            </h2>
-                                            
+                                    <div class="saved-search">
+                                        <div class="saved-search-grid">
+                                            <p>Stanje: {{$search->state}}</p>
+                                            <p>Marka: {{$search->brand}}</p>
+                                            <p>Model: {{$search->type}}</p>
+                                            <p>Godište: {{$search->manuf_year}}.</p>
+                                            <p>Kilometraža: {{$search->kilometers}}km</p>
+                                            <p>Cena: {{$search->price}}</p>
+                                            <p>Gorivo: {{$search->fuel_type}}</p>
+                                            <p>Kubikaža: {{$search->motor_cc}}cm3</p>
+                                            <p>Snaga motora: {{$search->horse_power}}</p>
+                                            <p>Vrsta pogona: {{$search->drive}}</p>
+                                            <p>Menjač: {{$search->shift_type}}</p>
+                                            <p>Broj vrata: {{$search->no_doors}}</p>    
                                         </div>
-                                    </div>
                                         <button class="btn btn-danger" onclick="window.location.href='http://localhost:8000/delete_search/{{$search->id}}'">Izbrisi pretragu</button>
+                                    </div>
+                                        {{-- <a href="/deletepost/{{$search->id}}">Obrisi pretragu</a> --}}
                                 </div>
                             </li>
                             

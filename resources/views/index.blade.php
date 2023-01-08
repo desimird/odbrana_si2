@@ -243,7 +243,7 @@
                     
             </section>
             {{-- <div class="mt-6 p-4">
-                {{$listings->links()}}
+                {{$listings->links('pagination::bootstrap-4')}}
             </div> --}}
             <section class="guide">
                 <div class="guide-desc">
