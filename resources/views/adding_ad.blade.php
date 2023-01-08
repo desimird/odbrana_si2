@@ -24,20 +24,13 @@
             <nav id="nav">
                 <ul>
                     <li><a href="/profile">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
-                    @if (auth()->user())
+                    <li><a href="/search_list">Pretraga</a></li>
+                    <li><a href="https://autoblog.rs/" target="blank">Vesti</a></li>
                         <li>
                             <div>
                                 <a href="/profile"> Dobrodošli, {{auth()->user()->name}} </a>
                             </div>
                         </li>
-                    @else
-                        <div class="buttons">
-                            <li><button class="modal-btn">Prijavi se</button></li>
-                            <li><a href="{{ url('register') }}" class="login-btn">Registruj se</a></li>
-                        </div>
-                    @endif
                 </ul>
             </nav>
             
@@ -48,7 +41,6 @@
                 <form action='/listing' enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="ad-parts">
-                        <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
                         <div class="ad-part">
                             <label for="state">Stanje:</label>
                             <select name ="state"id="state">
@@ -202,8 +194,7 @@
             </div>
             <div class="contact">
                 <div class="contact-info">
-                    <a href="#">Oglasi</a>
-                    <a href="#">Cene</a>
+                    <a href="/">Oglasi</a>
                     <a href="/register" class="login-btn">Registruj se</a>
                 </div>
                 <div class="contact-sections">
@@ -220,7 +211,7 @@
                     </div>
                 </div>
             </div>
-            <p>©2022 UsedCars.com, sva prava zadržana.</p>
+            <p>©2023 UsedCars.com, sva prava zadržana.</p>
         </footer>
     </body>
 </html>

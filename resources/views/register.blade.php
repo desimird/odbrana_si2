@@ -24,8 +24,7 @@
             <nav id="nav">
                 <ul>
                     <li><a href="{{ url('/') }}">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
+                    <li><a href="https://autoblog.rs/" target="blank">Vesti</a></li>
                 </ul>
             </nav>
         </header>
@@ -44,7 +43,6 @@
                      @error('name')
                       <p class="text-2">{{$message}}</p>
                      @enderror
-                    {{-- <input type="text" name="uname" required> --}}
                 </div>
                 <div class="form-item">
                     <label for="surname"><b>Prezime</b></label>
@@ -56,7 +54,6 @@
                     @error('surname')
                       <p class="text-2">{{$message}}</p>
                      @enderror
-                    {{-- <input type="text" name="sname" required> --}}
                 </div>
                 <div class="form-item">
                     <label for="birthday"><b>Datum rođenja</b></label>
@@ -68,7 +65,6 @@
                     @error('birthday')
                       <p class="text-2">{{$message}}</p>
                      @enderror
-                    {{-- <input type="text" name="birth-date" required> --}}
                 </div>
                 <div class="form-item">
                     <label for="city"><b>Grad</b></label>
@@ -80,7 +76,6 @@
                     @error('city')
                       <p class="text-2">{{$message}}</p>
                      @enderror
-                    {{-- <input type="text" name="city" required> --}}
                 </div>
                 <div class="form-item">
                     <label for="email"><b>Email adresa</b></label>
@@ -92,7 +87,6 @@
                     @error('email')
                       <p class="text-2">{{$message}}</p>
                      @enderror
-                    {{-- <input type="email" name="email" required> --}}
                 </div>
                 <div class="form-item">
                     <label for="username"><b>Korisničko ime</b></label>
@@ -104,7 +98,6 @@
                     @error('username')
                       <p class="text-2">{{$message}}</p>
                      @enderror
-                    {{-- <input type="text" name="uname" required> --}}
                 </div>
                 <div class="form-item">
                     <label for="password"><b>Šifra</b></label>
@@ -116,7 +109,6 @@
                     @error('password')
                       <p class="form-control">{{$message}}</p>
                      @enderror
-                    {{-- <input type="password" name="psw" required> --}}
                 </div>
                 <button type="submit" class="login-btn form-btn">Uloguj se</button>
             </div>
@@ -142,8 +134,7 @@
             </div>
             <div class="contact">
                 <div class="contact-info">
-                    <a href="#">Oglasi</a>
-                    <a href="#">Cene</a>
+                    <a href="/">Oglasi</a>
                     <a href="{{ url('register') }}" class="login-btn">Registruj se</a>
                 </div>
                 <div class="contact-sections">
@@ -160,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <p>©2022 UsedCars.com, sva prava zadržana.</p>
+            <p>©2023 UsedCars.com, sva prava zadržana.</p>
         </footer>
     </body>
 </html>

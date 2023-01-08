@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Rmbr_search;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+
         $formFields = $request->validate([
             'username' => ['required'],
             'city' => ['required'],
@@ -51,18 +52,14 @@ class UserController extends Controller
             'image' => '',
 
         ]);
-        #dd($formFields);
 
-        //Hash Password
+
         $formFields['password'] = bcrypt($formFields['password']);
 
-        //create user
         $user = User::create($formFields);
 
-        //login
         auth()->login($user);
 
-        //return view('/', compact('user')); //->with('message', 'User created and logged in.');
         return redirect('/profile');
 
     }
@@ -124,19 +121,17 @@ class UserController extends Controller
 
         ]);
 
-        //dd(auth()->attempt($formFields));
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
 
-            //dd(auth()->user()->is_admin);
             if (auth()->user()->is_admin) {
                 return redirect("/admin/index");
             } else {
-                return redirect("/profile");//->withErrors('message', 'You are now logged in!');  ///meseges da se doda
+                return redirect("/profile");
             }
         }
 
-        return redirect('/neradi'); //->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
+        return back();
 
     }
 
@@ -148,41 +143,43 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/'); //->with('message', 'You have been logout!');
+        return redirect('/');
     }
 
 
     public function update_password(Request $request)
     {
-        # Validation
+
         $request->validate([
             'password' => 'required',
             'newpassword' => 'required',
         ]);
 
-
-        #Match The Old Password
         if (!Hash::check($request->password, auth()->user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
+            return back();
         }
 
-
-        #Update the new Password
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->newpassword)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        return back();
 
     }
 
     public function admin_users(){
-        return view('admin_users', ['users' => User::all()]);
+        if (auth()->user()->is_admin) {
+            return view('admin_users', ['users' => User::all()]);
+        }
+        return back();
     }
 
     public function delete_user($id) {
-        Listing::where('user_id',$id)->delete();
-        User::whereId($id)->delete();
+        if (auth()->user()->is_admin) {
+            Listing::where('user_id', $id)->delete();
+            Rmbr_search::where('user_id', $id)->delete();
+            User::whereId($id)->delete();
+        }
         return back();
     }
 

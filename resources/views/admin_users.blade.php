@@ -25,66 +25,19 @@
                     <li><a href=" {{ url('/admin/index') }}">Početna</a></li>
                     <li><a href="{{ url('/admin/on_hold')}}">Oglasi na cekanju</a></li>
                     <li><a href="{{ url('/admin/users')}}">Korisnici</a></li>
-                    @if (auth()->user())
                         <li>
                             <div>
                                 <a href="/profile"> Dobrodošli, {{auth()->user()->name}} </a>
                             </div>
                         </li>
-                    @else
-                        <div class="buttons">
-                            <li><button class="modal-btn">Prijavi se</button></li>
-                            <li><a href="{{ url('register') }}" class="login-btn">Registruj se</a></li>
-                        </div>
-                    @endif
-                    
                 </ul>
             </nav>
-            <div id="overlay">
-                <form class= "login-form" method="POST" action='/login'>
-                    @csrf
-                    <div >
-                        {{-- <div class="login-data"> --}}
-                            <div class="login-item">
-                                <label for="username">Korisničko ime</label>
-                                <input
-                                     type="text"
-                                     name="username"
-                                     value="{{old('username')}}"
-                                 />
-                                {{-- @error('username')
-                                  <p class="form-control">{{$message}}</p>
-                                @enderror --}}
-                            </div>
-                            <div class="login-item">
-                                <label for="password">Šifra</label>
-                                <input
-                                     type="password"
-                                     name="password"
-                                     value="{{old('password')}}"
-                                 />
-                                 {{-- @error('password')
-                                  <p class="form-control">{{$message}}</p>
-                                @enderror --}}
-                            </div>
-                            <button type="submit" class="login-btn">Uloguj se</button>
-                        {{-- </div> --}}
-                        
-                        <div class="close-login">
-                            <button type="button" class="cancel-btn">Zatvori</button>
-                            <a href="{{ url('register') }}">Nemate svoj nalog? Napravite novi!</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </header>
         <main>
             
             <section class="car-ads">
                 <h1>Korisnici</h1>
-                {{-- <div class="car-ads-grid"> --}}
                 <ul style="list-style: none;">
-                    
                         @unless ($users->isEmpty())
                         @foreach ($users as $user)
                             @if ($user->id == auth()->user()->id)
@@ -92,26 +45,18 @@
                             @endif
                             <li>
                                 <div class="car-ad">
-                                    {{-- <img src=" {{asset('storage/uploads/'. $listing->imgpath)}} " alt="A car"> --}}
                                     <div class="car-desc">
                                         <div class="car-name-price">
                                             <h2 class="car-name">{{$user->name. $user->lastname}}</h2>
                                             <p class="car-price">{{$user->username}}</p>
                                         </div>
                                     </div>
-                                        {{-- <a href="/deletepost/{{$listing->id}}">Obrisi oglas</a> --}}
                                     <button class="btn btn-danger" onclick="window.location.href='http://localhost:8000/delete_user/{{$user->id}}'">Izbrisi korisnika</button>
                                 </div>
                             </li>
-                            
                         @endforeach
-                        
                     @endunless
-                    
-                    
                 </ul>
-                    
-                    
             </section>
             {{-- <div class="mt-6 p-4">
                 {{$listings->links()}}
@@ -132,8 +77,7 @@
             </div>
             <div class="contact">
                 <div class="contact-info">
-                    <a href="#">Oglasi</a>
-                    <a href="#">Cene</a>
+                    <a href="/admin/index">Oglasi</a>
                     <a href="/register" class="login-btn">Registruj se</a>
                 </div>
                 <div class="contact-sections">
@@ -150,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <p>©2022 UsedCars.com, sva prava zadržana.</p>
+            <p>©2023 UsedCars.com, sva prava zadržana.</p>
         </footer>
     </body>
 </html>

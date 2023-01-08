@@ -24,8 +24,8 @@
             <nav id="nav">
                 <ul>
                     <li><a href="{{ url('/') }}">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
+                    <li><a href="/search_list">Pretraga</a></li>
+                    <li><a href="https://autoblog.rs/" target="blank">Vesti</a></li>
                     @if (auth()->user())
                         <li>
                             <div>
@@ -56,20 +56,16 @@
         
                     <div class="close-login">
                         <button type="button" class="cancel-btn">Zatvori</button>
-                        <a href="register.html">Nemate svoj nalog? Napravite novi!</a>
+                        <a href="/register">Nemate svoj nalog? Napravite novi!</a>
                     </div>
                 </div>
             </div>
         </header>
         <main>
             <section class="ad">
-                {{-- <h1>Volkswagen Passat B7 1.4 CNG</h1> --}}
                 <h1>{{ $listing[0]->brand }} {{ $listing[0]->type }}</h1>
                 <div class="ad-image-toggler">
-                    <div class="num-of-photo"></div>
-                    <div class="toggler toggler-one"> < </div>
                     <img src="{{ asset('storage/uploads/'. $listing[0]->imgpath) }}" alt="Advertised car image" class="ad-image">
-                    <div class="toggler toggler-two"> > </div>
                 </div>
                 <div class="ad-info">
                     <h2>Opšte informacije</h2>
@@ -124,16 +120,10 @@
                         </li>
                     </ul>
                 </div>
-                {{-- <div class="ad-desc">
-                    <h2>Opis vozila</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint at quod laborum natus aliquid dolorum fugit harum fuga labore ducimus?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tenetur qui nostrum deserunt distinctio temporibus vero dolores nobis, velit nesciunt quis debitis consequatur iure ea harum fugit obcaecati officia cumque repellendus vitae eos delectus nihil recusandae? Facere doloremque deserunt molestiae.</p>
-                </div> --}}
                 <div class="user">
                     <h2>Informacije o prodavcu</h2>
                     <div class="user-info">
                         <div class="user-basic">
-                            {{-- Sredite ovo bolje --}}
                             <img src="{{ $user[0]->profileImage() }}" alt="Profile picture of the user" class="rounded-circle profilna">
                             <h3>{{ $user[0]->username }}</h3>
                         </div>
@@ -183,8 +173,7 @@
             </div>
             <div class="contact">
                 <div class="contact-info">
-                    <a href="#">Oglasi</a>
-                    <a href="#">Cene</a>
+                    <a href="/">Oglasi</a>
                     <a href="{{ url('/register') }}" class="login-btn">Registruj se</a>
                 </div>
                 <div class="contact-sections">

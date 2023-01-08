@@ -11,13 +11,6 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
         <script src="{{ asset('js/index.js') }}" defer></script>
         <script src="{{ asset('js/cng_pwd.js') }}" defer></script>
-        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" />
-  <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script> --}}
     </head>
     <body>
         <header>
@@ -33,7 +26,7 @@
                 <ul>
                     <li><a href=" {{ url('/') }}">Početna</a></li>
                     <li><a href="/search_list">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
+                    <li><a href="https://autoblog.rs/" target="blank">Vesti</a></li>
                     @if (auth()->user())
                         <li>
                             <div>
@@ -46,14 +39,12 @@
                             <li><a href="{{ url('register') }}" class="login-btn">Registruj se</a></li>
                         </div>
                     @endif
-                    
                 </ul>
             </nav>
             <div id="overlay">
                 <form class= "login-form" method="POST" action='/login'>
                     @csrf
                     <div >
-                        {{-- <div class="login-data"> --}}
                             <div class="login-item">
                                 <label for="username">Korisničko ime</label>
                                 <input
@@ -61,9 +52,6 @@
                                      name="username"
                                      value="{{old('username')}}"
                                  />
-                                {{-- @error('username')
-                                  <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="login-item">
                                 <label for="password">Šifra</label>
@@ -72,16 +60,12 @@
                                      name="password"
                                      value="{{old('password')}}"
                                  />
-                                 {{-- @error('password')
-                                  <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <button type="submit" class="login-btn">Uloguj se</button>
-                        {{-- </div> --}}
                         
                         <div class="close-login">
                             <button type="button" class="cancel-btn">Zatvori</button>
-                            <a href="{{ url('register') }}">Nemate svoj nalog? Napravite novi!</a>
+                            <a href="{{ url('/register') }}">Nemate svoj nalog? Napravite novi!</a>
                         </div>
                     </div>
                 </form>
@@ -121,7 +105,6 @@
                     <form action='/det_search' enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="ad-parts" width="80%" justify-content:space-between>
-                            <!--<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">-->
                             <div class="ad-part">
                                 <label for="state">Stanje:</label>
                                 <select name ="state"id="state">
@@ -136,9 +119,6 @@
                                     name="brand"
                                     value="{{old('brand')}}"
                                 />
-                                {{-- @error('brand')
-                                    <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="type">Model:</label>
@@ -147,9 +127,6 @@
                                     name="type"
                                     value="{{old('type')}}"
                                 />
-                                {{-- @error('type')
-                                    <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="manuf_year">Godište:</label>
@@ -158,9 +135,6 @@
                                     name="manuf_year"
                                     value="{{old('manuf_year')}}"
                                 />
-                                {{-- @error('manuf_year')
-                                    <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="kilometers">Kilometraža:</label>
@@ -169,9 +143,6 @@
                                     name="kilometers"
                                     value="{{old('kilometers')}}"
                                 />
-                                {{-- @error('kilometers')
-                                    <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="price">Cena:</label>
@@ -180,9 +151,6 @@
                                     name="price"
                                     value="{{old('price')}}"
                                 />
-                                {{-- @error('price')
-                                    <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="fuel_type">Gorivo:</label>
@@ -202,9 +170,6 @@
                                     name="motor_cc"
                                     value="{{old('motor_cc')}}"
                                 />
-                                {{-- @error('motor_cc')
-                                    <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="horse_power">Snaga motora:</label>
@@ -213,10 +178,6 @@
                                     name="horse_power"
                                     value="{{old('horse_power')}}"
                                 />
-
-                                {{-- @error('horse_power')
-                                <p class="form-control">{{$message}}</p>
-                                @enderror --}}
                             </div>
                             <div class="ad-part">
                                 <label for="drive_type">Vrsta pogona:</label>
@@ -257,7 +218,6 @@
                 
             </section>
         </div>
-        {{-- <button class="cancel-btn1">skloni se se</button> --}}
             <section class="car-ads">
                 <h1>Oglasi</h1>
                 <div class="car-ads-grid">
@@ -301,8 +261,7 @@
             </div>
             <div class="contact">
                 <div class="contact-info">
-                    <a href="#">Oglasi</a>
-                    <a href="#">Cene</a>
+                    <a href="/">Oglasi</a>
                     <a href="/register" class="login-btn">Registruj se</a>
                 </div>
                 <div class="contact-sections">
@@ -319,7 +278,7 @@
                     </div>
                 </div>
             </div>
-            <p>©2022 UsedCars.com, sva prava zadržana.</p>
+            <p>©2023 UsedCars.com, sva prava zadržana.</p>
         </footer>
     </body>
 </html>

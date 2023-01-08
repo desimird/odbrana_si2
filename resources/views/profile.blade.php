@@ -27,7 +27,7 @@
                 <ul>
                     <li><a href="/">Početna</a></li>
                     <li><a href="/search_list">Pretraga</a></li>
-                    <li><a href="#">Vesti</a></li>
+                    <li><a href="https://autoblog.rs/" target="blank">Vesti</a></li>
                     <li>
                         <div>
                             <a href="/profile"> Dobrodošli, {{auth()->user()->name}} </a>
@@ -62,10 +62,6 @@
                 <div class="profile-options">
                     <ul>
                         <li><a href="/adding_ad" class="new-ad">Novi oglas</a></li>
-                        {{-- Veljko sta je ovo --}}
-                        <li><a href="#ads" onclick="showAds()" class="link-to-section">Moji oglasi</a></li>
-                        <li><a href="#searches" onclick="showSearches()" class="link-to-section">Sačuvane pretrage</a></li>
-                        <li><a href="#data" onclick="showProfileData()" class="link-to-section">Podaci o profilu</a></li>
                         <li><a href="logout" class="profile-btn">Odjavite se</a></li>
                     </ul>
                 </div>
@@ -123,10 +119,6 @@
                     <p>Korisničko ime</p>
                     <p class="bold">{{ auth()->user()->username }}</p>
                 </div>
-                {{-- Veljko sta je ovo <div>
-                    <p>Broj telefona</p>
-                    <p class="bold">061/423-34-12</p>
-                </div> --}}
                 <div>
                     <p>Email adresa</p>
                     <p class="bold">{{ auth()->user()->email }}</p>
@@ -138,7 +130,6 @@
                 <form  class="login-form" method="POST" action='/updatepsw'>
                     @csrf
                     <div>
-                        {{-- <div class="login-data"> --}}
                             <div class="login-item">
                                 <label for="password">Unesite trenutnu lozinku</label>
                                 <input
@@ -155,10 +146,7 @@
                                      value="{{old('newpassword')}}"
                                  />
                             </div>
-                            {{-- potvrdi lozinku mozda --}}
                             <button type="submit" class="login-btn">Promeni lozinku</button>
-                        {{-- </div> --}}
-                        
                         <div class="close-login">
                             <button type="button" class="cancel-btn">Zatvori</button>
                         </div>
@@ -181,10 +169,8 @@
             </div>
             <div class="contact">
                 <div class="contact-info">
-                    <a href="#">Oglasi</a>
-                    <a href="#">Cene</a>
+                    <a href="/">Oglasi</a>
                     <a href="/register" class="login-btn">Registruj se</a>
-                    {{-- kad se ulogovan covek oce registruje da mu kazes da ne moze :D --}}
                 </div>
                 <div class="contact-sections">
                     <div class="contact-section">

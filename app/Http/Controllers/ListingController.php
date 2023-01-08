@@ -126,17 +126,21 @@ class ListingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Listing::whereId($id)->delete();
+    {   
+        if(auth()->user()->is_admin){
+            Listing::whereId($id)->delete();
+        }
+        
         return back();
-        //Listing::whereId(auth()->user()->id)->delete();
-        //return redirect('/');
+
     }
     
 
     public function my_listings(){
 
-        //dd(auth()->user()->listings()->get());
+        if(auth()->user()->is_admin){
+            return redirect('/admin/index');
+        }
         return view('profile', ['listings' => auth()->user()->listings()->get(), 'my_searches' => auth()->user()->rmbr_searches()->get()]);
 
     }
@@ -144,22 +148,30 @@ class ListingController extends Controller
 
 
     public function admin_listings(){
-        return view('admin_index', ['listings' => Listing::where('approved', '1')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
+        if (auth()->user()->is_admin) {
+            return view('admin_index', ['listings' => Listing::where('approved', '1')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
+        }
+        return back();
     }
+
 
 
     public function listings_on_hold(){
-        return view('admin_on_hold', ['listings' => Listing::where('approved', '0')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
+        if (auth()->user()->is_admin) {
+            return view('admin_on_hold', ['listings' => Listing::where('approved', '0')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
+        }
+        return back();
     }
 
     public function approve($id){
-
-        Listing::whereId($id)->update(['approved' => '1']);
+        if (auth()->user()->is_admin) {
+            Listing::whereId($id)->update(['approved' => '1']);
+        }
         return back();
     }
 
     public function singlead($id) {
-        //Ovo moze mnogo lepse sigurno
+
         $listing = Listing::whereId($id)->get();
         $user = User::whereId($listing[0]->user_id)->get();
         $other_listings = Listing::where('user_id', $listing[0]->user_id)->get();
@@ -223,9 +235,11 @@ class ListingController extends Controller
 
 
     public function det_search_rmb($id){
-
+        
         $my_search = Rmbr_search::find($id);
-        //dd($my_search);
+        if(auth()->user()->id != $my_search->user_id){
+            return back();
+        }
         $listings = Listing::where(function ($query) use ($my_search) {
             if($my_search->brand){
                 $query->where('brand', 'like', '%' . $my_search->brand . '%');

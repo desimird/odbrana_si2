@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {{-- ovo mislim da ne koristimo nigde --}}
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,6 @@
         <title>UsedCars | Novi oglas</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
         <script src="{{ asset('js/cng_pwd.js') }}" defer></script>
-        {{-- <script src="{{ asset('js/index.js') }}" defer></script> --}}
-        
-
     </head>
     <body>
         <header>
@@ -22,7 +20,7 @@
                     <span class="yellow">Used</span>
                     <span class="white">Cars</span>
                 </div>
-                <img src="./images/icons/hamburger-icon.png" alt="Hamburger icon" id="hamburger">
+                <img src="{{asset(img/icons/hamburger-icon.png)}}" alt="Hamburger icon" id="hamburger">
             </div>
             <nav id="nav">
                 <ul>
