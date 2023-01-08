@@ -247,7 +247,7 @@
                         </div>
                             <div>
                                 <div class="col-6">
-                                    <button class="submit-btn">Pretrazi</button>
+                                    <button class="submit-btn">Pretraži</button>
                                     <button class="submit-btn" formaction="/rmbr_search">Zapamti pretragu</button>
                                 </div>
                             </div>

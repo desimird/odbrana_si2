@@ -9,6 +9,10 @@
     padding: 2em;
 }
 
+.ad h1 {
+    text-align: center;
+}
+
 .ad-image-toggler {
     width: 370px;
     position: relative;
@@ -90,7 +94,8 @@ h2 {
     font-weight: bold;
 }
 
-.user-basic {
+.user-basic,
+.user-info {
     display: flex;
     align-items: center;
     justify-content: space-between;

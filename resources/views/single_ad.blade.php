@@ -64,7 +64,7 @@
         <main>
             <section class="ad">
                 {{-- <h1>Volkswagen Passat B7 1.4 CNG</h1> --}}
-                <h1>{{ $listing[0]->brand }}</h1>
+                <h1>{{ $listing[0]->brand }} {{ $listing[0]->type }}</h1>
                 <div class="ad-image-toggler">
                     <div class="num-of-photo"></div>
                     <div class="toggler toggler-one"> < </div>

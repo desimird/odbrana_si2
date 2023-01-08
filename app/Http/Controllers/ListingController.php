@@ -77,6 +77,7 @@ class ListingController extends Controller
         // $image->save();
 
         $formFields['user_id'] = auth()->id();
+        $formFields['approved'] = '0';
         $formFields['imgpath'] = $img;
         
 

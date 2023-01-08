@@ -226,6 +226,11 @@ select {
     justify-content: center;
 }
 
+.car-ads-grid a {
+    text-decoration: none;
+    color: var(--black);
+}
+
 .car-ad {
     margin: .5rem auto 1rem;
     width: 350px;
@@ -266,6 +271,16 @@ select {
 
 .car-details {
     text-align: right;
+}
+
+.btn-div {
+    background-color: white;
+    padding: .75rem;
+}
+
+.btn-div button {
+    display: block;
+    margin-left: auto;
 }
 
 /* Guide section */
