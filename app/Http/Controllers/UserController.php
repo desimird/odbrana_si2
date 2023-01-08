@@ -132,7 +132,7 @@ class UserController extends Controller
             if (auth()->user()->is_admin) {
                 return redirect("/admin/index");
             } else {
-                return redirect("/profile"); //->with('message', 'You are now logged in!');  ///meseges da se doda
+                return redirect("/profile");//->withErrors('message', 'You are now logged in!');  ///meseges da se doda
             }
         }
 

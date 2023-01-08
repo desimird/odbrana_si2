@@ -80,3 +80,7 @@ Route::get('/det_search/{id}', [ListingController::class, 'det_search_rmb']);
 
 
 Route::post('/rmbr_search', [Rmbr_searchController::class, 'store']);
+
+Route::get('/search_list', [Rmbr_searchController::class, 'my_searches']);
+
+Route::get('/delete_search/{id}', [Rmbr_searchController::class, 'destroy']);

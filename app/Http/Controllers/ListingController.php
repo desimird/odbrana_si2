@@ -141,6 +141,8 @@ class ListingController extends Controller
 
     }
 
+
+
     public function admin_listings(){
         return view('admin_index', ['listings' => Listing::where('approved', '1')->latest()->filter(request(['tags', 'search_input']))->paginate(10)]);
     }

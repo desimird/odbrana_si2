@@ -32,7 +32,7 @@
             <nav id="nav">
                 <ul>
                     <li><a href=" {{ url('/') }}">Početna</a></li>
-                    <li><a href="#">Pretraga</a></li>
+                    <li><a href="/search_list">Pretraga</a></li>
                     <li><a href="#">Vesti</a></li>
                     @if (auth()->user())
                         <li>

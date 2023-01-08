@@ -87,6 +87,14 @@ class Rmbr_searchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rmbr_search::whereId($id)->delete();
+        return redirect('/search_list');
+    }
+
+    public function my_searches(){
+
+        //dd(auth()->user()->listings()->get());
+        return view('saves_searches', ['my_searches' => auth()->user()->rmbr_searches()->get()]);
+
     }
 }
