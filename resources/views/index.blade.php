@@ -242,9 +242,9 @@
                     @endunless
                     
             </section>
-            {{-- <div class="mt-6 p-4">
+            <div class="mt-6 p-4">
                 {{$listings->links('pagination::bootstrap-4')}}
-            </div> --}}
+            </div>
             <section class="guide">
                 <div class="guide-desc">
                     <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>
