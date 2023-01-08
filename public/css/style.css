@@ -340,6 +340,20 @@ footer p {
     text-align: center;
 }
 
+.saved-search {
+    margin: 0 auto;
+    width: 32%;
+    padding: .5rem;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.saved-search-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 @media screen and (min-width: 550px) {
     .guide {
         justify-content: space-between;
