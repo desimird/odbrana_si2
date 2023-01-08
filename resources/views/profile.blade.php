@@ -54,7 +54,7 @@
                             @enderror
                         </div>
                     
-                        <div class="btn-div">
+                        <div class="submit-btn-div">
                             <button class="submit-btn mr-5">Ažuriraj</button>
                         </div>
                     </form>

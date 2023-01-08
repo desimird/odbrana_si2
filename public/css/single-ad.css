@@ -115,6 +115,12 @@ h2 {
     height: 190px;
 }
 
+.profilna {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
 @media screen and (min-width: 500px) {
     .car-ads-grid {
         justify-content: left;
@@ -209,8 +215,4 @@ h2 {
     .user-info {
         width: 70%;
     }
-}
-
-.profilna {
-    width: 60%;
 }

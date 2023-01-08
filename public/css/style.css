@@ -92,6 +92,10 @@ nav ul li a {
     border: .5px solid var(--black);
 }
 
+.submit-btn-div {
+    margin-right: auto;
+}
+
 .buttons {
     border-color: var(--yellow);
 }
