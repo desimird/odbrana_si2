@@ -228,7 +228,7 @@ class ListingController extends Controller
             if($request->motor_cc){
                 $query->where('no_doors', 'like', '%' . $request->no_doors . '%');
             }
-        })->get();
+        })->paginate(10);
 
         return view('index', ['listings'=> $listings]);
     }
@@ -288,7 +288,7 @@ class ListingController extends Controller
             if($my_search->motor_cc){
                 $query->where('no_doors', 'like', '%' . $my_search->no_doors . '%');
             }
-        })->get();
+        })->paginate(10);
 
         return view('index', ['listings'=> $listings]);
     }
