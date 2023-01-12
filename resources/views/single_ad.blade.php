@@ -4,22 +4,22 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{  asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/single-ad.css') }}">
+        <link rel="stylesheet" href="{{  secure_asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/single-ad.css') }}">
         <title>UsedCars | Oglas</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
-        <script src="{{ asset('js/index.js') }}" defer></script>
-        <script src="{{ asset('js/single-ad.js') }}" defer></script>
+        <link rel="icon" type="image/x-icon" href="{{ secure_asset('img/icons/car-icon.png') }}">
+        <script src="{{ secure_asset('js/index.js') }}" defer></script>
+        <script src="{{ secure_asset('js/single-ad.js') }}" defer></script>
     </head>
     <body>
         <header>
             <div class="menu">
                 <div class="logo">
-                    <img src="{{ asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
+                    <img src="{{ secure_asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
                     <span class="yellow">Used</span>
                     <span class="white">Cars</span>
                 </div>
-                <img src="{{ asset('img/icons/hamburger-icon.png') }}" alt="Hamburger icon" id="hamburger">
+                <img src="{{ secure_asset('img/icons/hamburger-icon.png') }}" alt="Hamburger icon" id="hamburger">
             </div>
             <nav id="nav">
                 <ul>
@@ -65,7 +65,7 @@
             <section class="ad">
                 <h1>{{ $listing[0]->brand }} {{ $listing[0]->type }}</h1>
                 <div class="ad-image-toggler">
-                    <img src="{{ asset('storage/uploads/'. $listing[0]->imgpath) }}" alt="Advertised car image" class="ad-image">
+                    <img src="{{ secure_asset('storage/uploads/'. $listing[0]->imgpath) }}" alt="Advertised car image" class="ad-image">
                 </div>
                 <div class="ad-info">
                     <h2>Opšte informacije</h2>
@@ -142,7 +142,7 @@
                         @endif 
                             
                             <div class="car-ad">
-                                <img src="{{asset("storage/uploads/". $list->imgpath)}} " alt="A car">
+                                <img src="{{secure_asset("storage/uploads/". $list->imgpath)}} " alt="A car">
                                 <div class="car-desc">
                                     <div class="car-name-price">
                                     <h2 class="car-name">{{$list->band.$list->type}}</h2>
@@ -162,12 +162,12 @@
                     <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a
                             href="https://www.polovniautomobili.com/pomoc-pri-kupovini-automobila">vodič</a> pre Vaše prve kupovine!</p>
                 </div>
-                <img src="{{asset('img/icons/shopping_cart.png')}}" alt="Shopping cart icon">
+                <img src="{{secure_asset('img/icons/shopping_cart.png')}}" alt="Shopping cart icon">
             </section>
         </main>
         <footer>
             <div class="logo">
-                <img src="{{asset('img/icons/car-icon.png')}}" alt="Yellow car icon that is part of the logo">
+                <img src="{{secure_asset('img/icons/car-icon.png')}}" alt="Yellow car icon that is part of the logo">
                 <span class="yellow">Used</span>
                 <span class="white">Cars</span>
             </div>

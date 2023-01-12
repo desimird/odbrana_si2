@@ -5,23 +5,23 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/profile.css') }}">
         <title>UsedCars | Profil korisnika</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
-        <script src="{{asset('js/index.js')}}" defer></script>
-        <script src="{{asset('js/profile.js')}}" defer></script>
-        <script src="{{asset('js/cng_pwd.js')}}" defer></script>
+        <link rel="icon" type="image/x-icon" href="{{ secure_asset('img/icons/car-icon.png') }}">
+        <script src="{{secure_asset('js/index.js')}}" defer></script>
+        <script src="{{secure_asset('js/profile.js')}}" defer></script>
+        <script src="{{secure_asset('js/cng_pwd.js')}}" defer></script>
     </head>
     <body>
         <header>
             <div class="menu">
                 <div class="logo">
-                    <img src="{{ asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
+                    <img src="{{ secure_asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
                     <span class="yellow">Used</span>
                     <span class="white">Cars</span>
                 </div>
-                <img src="{{ asset('img/icons/hamburger-icon.png') }}" alt="Hamburger icon" id="hamburger">
+                <img src="{{ secure_asset('img/icons/hamburger-icon.png') }}" alt="Hamburger icon" id="hamburger">
             </div>
             <nav id="nav">
                 <ul>
@@ -72,7 +72,7 @@
                     @unless ($listings->isEmpty())
                             @foreach ($listings as $listing)
                             <div class="car-ad">
-                                <img src="{{asset("storage/uploads/". $listing->imgpath)}} " alt="A car">
+                                <img src="{{secure_asset("storage/uploads/". $listing->imgpath)}} " alt="A car">
                                 <div class="car-desc">
                                     <div class="car-name-price">
                                         <h2 class="car-name">{{$listing->band.$listing->type}}</h2>
@@ -124,7 +124,7 @@
                     <p class="bold">{{ auth()->user()->email }}</p>
                 </div>
                 <button class="profile-btn modal">Promeni lozinku</button>
-                <button onclick="window.location.href = 'http://localhost:8000/destroy'" class="profile-btn" >Obriši nalog</button>
+                <button onclick="window.location.href = 'https://rough-sound-67073.pktriot.net/destroy'" class="profile-btn" >Obriši nalog</button>
             </section>
             <div id="overlay1">
                 <form  class="login-form" method="POST" action='/updatepsw'>
@@ -158,12 +158,12 @@
                     <h1 class="guide-title">Kako izabrati najbolji automobil za Vas?</h1>
                     <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a href="https://www.polovniautomobili.com/pomoc-pri-kupovini-automobila">vodič</a> pre Vaše prve kupovine!</p>
                 </div>
-                <img src="{{ asset('img/icons/shopping_cart.png') }}" alt="Shopping cart icon">
+                <img src="{{ secure_asset('img/icons/shopping_cart.png') }}" alt="Shopping cart icon">
             </section>
         </main>
         <footer>
             <div class="logo">
-                <img src="{{ asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
+                <img src="{{ secure_asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
                 <span class="yellow">Used</span>
                 <span class="white">Cars</span>
             </div>

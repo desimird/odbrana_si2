@@ -4,22 +4,22 @@
         <meta charset='UTF-8'>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/register.css') }}">
         <title>UsedCars | Registracija</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/car-icon.png') }}">
-        <script src="{{ asset('js/index.js') }}" defer></script>
+        <link rel="icon" type="image/x-icon" href="{{ secure_asset('img/icons/car-icon.png') }}">
+        <script src="{{ secure_asset('js/index.js') }}" defer></script>
         
     </head>
     <body>
         <header>
             <div class="menu">
                 <div class="logo">
-                    <img src="{{ asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
+                    <img src="{{ secure_asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
                     <span class="yellow">Used</span>
                     <span class="white">Cars</span>
                 </div>
-                <img src="{{ asset('img/icons/hamburger-icon.png') }}" alt="Hamburger icon" id="hamburger">
+                <img src="{{ secure_asset('img/icons/hamburger-icon.png') }}" alt="Hamburger icon" id="hamburger">
             </div>
             <nav id="nav">
                 <ul>
@@ -124,11 +124,11 @@
                 <p>Na šta sve treba obratiti pažnju pri kupovini automobila, koji detalji su najvažniji? Pročitajte naš <a
                         href="https://www.polovniautomobili.com/pomoc-pri-kupovini-automobila" target="_blank">vodič</a> pre Vaše prve kupovine!</p>
             </div>
-            <img src="{{ asset('img/icons/shopping_cart.png') }}" alt="Shopping cart icon">
+            <img src="{{ secure_asset('img/icons/shopping_cart.png') }}" alt="Shopping cart icon">
         </section>
         <footer>
             <div class="logo">
-                <img src="{{ asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
+                <img src="{{ secure_asset('img/icons/car-icon.png') }}" alt="Yellow car icon that is part of the logo">
                 <span class="yellow">Used</span>
                 <span class="white">Cars</span>
             </div>
