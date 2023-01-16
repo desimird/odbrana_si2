@@ -72,8 +72,9 @@
                                         <p class="car-price">{{$listing->price}}</p>
                                     </div>
                                     <p class="car-details">{{$listing->fuel_type}}</p>
+                                    <button class="btn btn-danger" onclick="window.location.href='https://rough-sound-67073.pktriot.net/deletepost/{{$listing->id}}'">Obrisi oglas</button>
                                 </div>
-                                   <button class="btn btn-danger" onclick="window.location.href='https://rough-sound-67073.pktriot.net/deletepost/{{$listing->id}}'">Obrisi oglas</button>
+                                   
                             </div>
                         @endforeach
                     @endunless

@@ -86,6 +86,7 @@
                     <option value="price">Cena</option>
                     <option value="drive_type">Vrsta pogona</option>
                     <option value="shifter_type">Vrsta menjača</option>
+                    <option value="no_seats">Broj sedista</option>
                 </select>
 
                         <div class="search-text">
@@ -200,6 +201,18 @@
                                 <select name="no_doors"id="no_doors">
                                     <option value="2/3">2/3</option>
                                     <option value="4/5">4/5</option>
+                                </select>
+                            </div>
+
+                            <div class="ad-part">
+                                <label for="no_seats">Broj sedista:</label>
+                                <select name="no_seats"id="no_seats">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
                                 </select>
                             </div>
                         

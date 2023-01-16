@@ -225,8 +225,12 @@ class ListingController extends Controller
                 $query->where('motor_cc', 'like', '%' . $request->motor_cc . '%');
             }
         })->where(function ($query) use ($request) {
-            if($request->motor_cc){
+            if($request->no_doors){
                 $query->where('no_doors', 'like', '%' . $request->no_doors . '%');
+            }
+        })->where(function ($query) use ($request) {
+            if($request->car_image){
+                $query->where('car_image', 'like', '%' . $request->car_image . '%');
             }
         })->paginate(10);
 
@@ -287,6 +291,10 @@ class ListingController extends Controller
         })->where(function ($query) use ($my_search) {
             if($my_search->motor_cc){
                 $query->where('no_doors', 'like', '%' . $my_search->no_doors . '%');
+            }
+        })->where(function ($query) use ($my_search) {
+            if($my_search->car_image){
+                $query->where('car_image', 'like', '%' . $my_search->car_image . '%');
             }
         })->paginate(10);
 
